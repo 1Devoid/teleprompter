@@ -25,10 +25,8 @@ class ProjectCubit extends Cubit<ProjectState>{
     ));
   }
 
-  void openToolSlider(String key){
-    final updatedToolsState = Map<String, bool>.from(state.toolsState)
-      ..updateAll((_, __) => false)
-      ..[key] = true;
+  void openToolSlider(String key) {
+    final updatedToolsState = state.toolsState.map((k, v) => MapEntry(k, k == key ? !v : false));
 
     emit(state.copyWith(toolsState: updatedToolsState));
   }

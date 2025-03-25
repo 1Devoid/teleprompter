@@ -1,0 +1,66 @@
+name: teleprompter
+description: "AppX:Teleprompter"
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.7.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+
+  # STATE MANAGERS
+  flutter_bloc: ^9.1.0
+  shared_preferences: ^2.5.2
+
+  # SECURITY
+  flutter_dotenv: ^5.2.1
+  flutter_secure_storage: ^9.2.2
+
+  # LOCALIZATION
+  easy_localization: ^3.0.7+1
+
+  # FIREBASE
+  firebase_core: ^3.9.0
+
+  # NETWORK
+  dio: ^5.8.0+1
+  http: ^1.3.0
+
+  # SERVICES
+  auto_route: ^10.0.1
+  equatable: ^2.0.7
+  either_dart: ^1.0.0
+  flutter_svg: ^2.0.17
+  flutter_screenutil: ^5.9.3
+  keyboard_dismisser: ^3.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  auto_route_generator: ^10.0.1
+  build_runner: ^2.4.15
+
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+#    - .env.dev
+    - assets/translation/
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Poppins-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+          weight: 600

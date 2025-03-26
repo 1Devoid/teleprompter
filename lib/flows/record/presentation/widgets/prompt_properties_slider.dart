@@ -4,7 +4,6 @@ import 'package:another_xlider/models/hatch_mark_label.dart';
 import 'package:another_xlider/models/slider_step.dart';
 import 'package:another_xlider/widgets/sized_box.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:teleprompter/common/app_styles.dart';
 import 'package:teleprompter/flows/record/presentation/logic/project/project_cubit.dart';
 import 'package:teleprompter/common/widgets/bottom_sheet.dart';
 import 'package:flutter/material.dart';
@@ -17,29 +16,35 @@ class PromptPropertiesSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ProjectCubit, ProjectState>(
       builder: (projectContext, state) {
-        if (state.toolsState['Position']!) {
+        if (state.toolsState['Position']! && state.isToolActive) {
           return FlutterSlider(
             values: [state.promptPosition],
             min: -1.0,
             max: 1.25,
             step: FlutterSliderStep(step: 0.05),
-            onDragging: (handlerIndex, lowerValue, upperValue) =>
-                projectContext.read<ProjectCubit>().changeTextPosition(lowerValue),
+            onDragging:
+                (handlerIndex, lowerValue, upperValue) => projectContext
+                    .read<ProjectCubit>()
+                    .changeTextPosition(lowerValue),
           );
         }
-        if (state.toolsState['Font size']!) {
+        if (state.toolsState['Font size']! && state.isToolActive) {
           return FlutterSlider(
             values: [state.fontSize],
             axis: Axis.vertical,
             rtl: true,
             min: 10,
             max: 25,
-            onDragging: (handlerIndex, lowerValue, upperValue) =>
-                projectContext.read<ProjectCubit>().changeFontSize(lowerValue),
+            onDragging:
+                (handlerIndex, lowerValue, upperValue) => projectContext
+                    .read<ProjectCubit>()
+                    .changeFontSize(lowerValue),
           );
         }
-        if (state.toolsState['Speed']!) {
-          Future.delayed(Duration.zero, () {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (state.toolsState['Speed']! && state.isToolActive) {
+            projectContext.read<ProjectCubit>().setToolActive(true);
+
             showModalBottomSheet(
               context: projectContext,
               isScrollControlled: true,
@@ -53,14 +58,15 @@ class PromptPropertiesSlider extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           IconButton(
-                            onPressed: ()
-                            {
-                              Future.delayed(Duration.zero, () {
-                                if (bottomSheetContext.mounted) {
-                                  projectContext.read<ProjectCubit>()
-                                      .openToolSlider('Speed');
-                                }
-                              });
+                            onPressed: () {
+                              if (bottomSheetContext.mounted) {
+                                projectContext
+                                    .read<ProjectCubit>()
+                                    .openToolSlider('Speed');
+                                projectContext
+                                    .read<ProjectCubit>()
+                                    .setToolActive(false);
+                              }
                               Navigator.of(bottomSheetContext).pop();
                             },
                             icon: Icon(Icons.close),
@@ -75,57 +81,65 @@ class PromptPropertiesSlider extends StatelessWidget {
                           bigLine: FlutterSliderSizedBox(
                             height: 15.0,
                             width: 2,
-                            decoration: BoxDecoration(
-                              color: Colors.black
-                            )
+                            decoration: BoxDecoration(color: Colors.black),
                           ),
                           smallLine: FlutterSliderSizedBox(
                             height: 15.0,
                             width: 2,
-                            decoration: BoxDecoration(
-                                color: Colors.grey
-                            )
+                            decoration: BoxDecoration(color: Colors.grey),
                           ),
                           labelsDistanceFromTrackBar: -50,
                           linesDistanceFromTrackBar: -10,
                           labels: [
                             FlutterSliderHatchMarkLabel(
                               percent: 0,
-                              label: Text('0,1x')
+                              label: Text('0,1x'),
                             ),
                             FlutterSliderHatchMarkLabel(
                               percent: 20,
-                              label: Text('2x')
+                              label: Text('2x'),
                             ),
                             FlutterSliderHatchMarkLabel(
                               percent: 40,
-                              label: Text('2x')
+                              label: Text('4x'),
                             ),
                             FlutterSliderHatchMarkLabel(
                               percent: 60,
-                              label: Text('5x')
+                              label: Text('6x'),
+                            ),
+                            FlutterSliderHatchMarkLabel(
+                              percent: 80,
+                              label: Text('8x'),
                             ),
                             FlutterSliderHatchMarkLabel(
                               percent: 100,
-                              label: Text('10x')
+                              label: Text('10x'),
                             ),
                           ],
                         ),
                         min: 0.0,
                         max: 10,
                         step: FlutterSliderStep(step: 0.1),
-                        onDragging: (handlerIndex, lowerValue, upperValue) =>
-                            projectContext.read<ProjectCubit>().changeScrollSpeed(lowerValue),
+                        onDragging: (handlerIndex, lowerValue, upperValue) {
+                          projectContext.read<ProjectCubit>().changeScrollSpeed(
+                            lowerValue,
+                          );
+                          projectContext.read<ProjectCubit>().setToolActive(
+                            false,
+                          );
+                        },
                       ),
                     ],
-                  )
+                  ),
                 );
               },
             );
-          });
-        }
-        if (state.toolsState['Start point']!) {
-          Future.delayed(Duration.zero, () {
+          }
+        });
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (state.toolsState['Start point']! && state.isToolActive) {
+            projectContext.read<ProjectCubit>().setToolActive(true);
+
             showModalBottomSheet(
               context: projectContext,
               isScrollControlled: true,
@@ -138,13 +152,17 @@ class PromptPropertiesSlider extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Start point',),
+                          Text('Start point'),
                           IconButton(
                             onPressed: () {
                               Future.delayed(Duration.zero, () {
                                 if (bottomSheetContext.mounted) {
-                                  projectContext.read<ProjectCubit>()
-                                    .openToolSlider('Start point');
+                                  projectContext
+                                      .read<ProjectCubit>()
+                                      .openToolSlider('Start point');
+                                  projectContext
+                                      .read<ProjectCubit>()
+                                      .setToolActive(false);
                                 }
                               });
                               Navigator.of(bottomSheetContext).pop();
@@ -158,26 +176,41 @@ class PromptPropertiesSlider extends StatelessWidget {
                           mode: CupertinoTimerPickerMode.hm,
                           initialTimerDuration: state.startPoint,
                           onTimerDurationChanged: (Duration newTime) {
-                            projectContext.read<ProjectCubit>().changeStartPoint(newTime);
+                            projectContext
+                                .read<ProjectCubit>()
+                                .changeStartPoint(newTime);
+                            projectContext.read<ProjectCubit>().setToolActive(
+                              false,
+                            );
                           },
                         ),
                       ),
                       TextButton(
-                          onPressed: () {},
-                          child: Text('Set')
+                        onPressed: () {
+                          if (bottomSheetContext.mounted) {
+                            projectContext.read<ProjectCubit>().openToolSlider(
+                              'Count',
+                            );
+                            projectContext.read<ProjectCubit>().setToolActive(
+                              false,
+                            );
+                          }
+                          Navigator.of(bottomSheetContext).pop();
+                        },
+                        child: Text('Set'),
                       ),
                     ],
                   ),
                 );
               },
             );
-          });
-        }
-        if (state.toolsState['Count']!) {
+          }
+        });
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (state.toolsState['Count']! && state.isToolActive) {
+            final List<int> times = [0, 1, 2, 3, 5, 10, 15];
+            projectContext.read<ProjectCubit>().setToolActive(true);
 
-          final List<int> times = [0, 1, 2, 3, 5, 10, 15]; /// NOTE: Need to check that
-
-          WidgetsBinding.instance.addPostFrameCallback((_) {
             showModalBottomSheet(
               context: projectContext,
               isScrollControlled: true,
@@ -193,12 +226,14 @@ class PromptPropertiesSlider extends StatelessWidget {
                           Text('Countdown'),
                           IconButton(
                             onPressed: () {
-                              Future.delayed(Duration.zero, () {
-                                if (bottomSheetContext.mounted) {
-                                  projectContext.read<ProjectCubit>()
-                                      .openToolSlider('Count');
-                                }
-                              });
+                              if (bottomSheetContext.mounted) {
+                                projectContext
+                                    .read<ProjectCubit>()
+                                    .openToolSlider('Count');
+                                projectContext
+                                    .read<ProjectCubit>()
+                                    .setToolActive(false);
+                              }
                               Navigator.of(bottomSheetContext).pop();
                             },
                             icon: Icon(Icons.close),
@@ -211,20 +246,33 @@ class PromptPropertiesSlider extends StatelessWidget {
                           final isSelected = state.countDown == times[index];
                           return GestureDetector(
                             onTap: () {
-                              Future.delayed(Duration.zero, () {
-                                if (bottomSheetContext.mounted) {
-                                  projectContext.read<ProjectCubit>()
-                                      .changeCountdown(times[index]);
-                                }
-                              });
+                              projectContext
+                                  .read<ProjectCubit>()
+                                  .openToolSlider('Count');
+                              projectContext
+                                  .read<ProjectCubit>()
+                                  .changeCountdown(times[index]);
+                              projectContext.read<ProjectCubit>().setToolActive(
+                                false,
+                              );
+                              Navigator.of(bottomSheetContext).pop();
                             },
                             child: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                                vertical: 8,
+                              ),
                               decoration: BoxDecoration(
-                                color: isSelected ? Colors.blue.shade200 : Colors.white,
+                                color:
+                                    isSelected
+                                        ? Colors.blue.shade200
+                                        : Colors.white,
                                 borderRadius: BorderRadius.circular(12),
                                 border: Border.all(
-                                  color: isSelected ? Colors.blue.shade400 : Colors.grey.shade300,
+                                  color:
+                                      isSelected
+                                          ? Colors.blue.shade400
+                                          : Colors.grey.shade300,
                                   width: 1.5,
                                 ),
                               ),
@@ -245,8 +293,8 @@ class PromptPropertiesSlider extends StatelessWidget {
                 );
               },
             );
-          });
-        }
+          }
+        });
         return SizedBox();
       },
     );

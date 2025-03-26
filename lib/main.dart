@@ -9,6 +9,7 @@ import 'package:teleprompter/generated/codegen_loader.g.dart';
 import 'package:teleprompter/services/app_config.dart';
 
 import 'app/data/datasources/account_datasource.dart';
+import 'flows/record/presentation/screens/record_preview_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,6 +17,8 @@ void main() async {
   // await AppConfig().loadDev();
 
   runApp(
+    /// DO NOT TOUCH PLS! THIS IS FOR DEV ISSUES
+    // MaterialApp(home: RecordPreviewScreen()),
     EasyLocalization(
       supportedLocales: const [Locale('en', 'US')],
       path: 'assets/translations',

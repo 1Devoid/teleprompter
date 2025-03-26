@@ -80,25 +80,27 @@ class _RecordPreviewScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 PromptContent(),
-                                 Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
+                                Container(
+                                  margin: EdgeInsets.only(
+                                    left: 20.0,
+                                    right: 20.0
+                                  ),
+                                  width: MediaQuery.of(context)
+                                      .size.width * 0.8,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
-                                      Container(
-                                        margin: EdgeInsets.only(
-                                            left: 20.0,
-                                            right: 20.0
-                                        ),
+                                      SizedBox(
+                                        height: MediaQuery.of(context)
+                                            .size.height * 0.2,
                                         width: MediaQuery.of(context)
-                                            .size.width * 0.8,
-                                        child:Column(
-                                          children: [
-                                            PromptPropertiesSlider(),
-                                            CameraPreviewTools()
-                                          ],
-                                        )
+                                          .size.width * 0.7,
+                                        child: PromptPropertiesSlider(),
                                       ),
                                     ],
-                                 )
+                                  ),
+                                ),
+                                CameraPreviewTools()
                               ],
                             ),
                           ],

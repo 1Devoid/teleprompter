@@ -20,6 +20,8 @@ class ProjectState extends Equatable {
     },
     this.promptPosition = 0.0,
     this.fontSize = 15.0,
+    this.scrollSpeed = 1.0,
+    this.startPoint = const Duration(minutes: 0, seconds: 0),
     this.countDown = 0,
     this.errorMessage,
   });
@@ -30,6 +32,8 @@ class ProjectState extends Equatable {
   final Map<String, bool> toolsState;
   final double promptPosition;
   final double fontSize;
+  final double scrollSpeed;
+  final Duration startPoint;
   final int countDown;
   final String? errorMessage;
 
@@ -40,10 +44,10 @@ class ProjectState extends Equatable {
     String? projectName,
     String? promptContent,
     Map<String, bool>? toolsState,
-    bool? isPositionSlider,
-    bool? isFontSizeSlider,
     double? promptPosition,
     double? fontSize,
+    double? scrollSpeed,
+    Duration? startPoint,
     int? countDown,
     String? errorMessage
   }){
@@ -54,6 +58,8 @@ class ProjectState extends Equatable {
       toolsState: toolsState ?? this.toolsState,
       promptPosition: promptPosition ?? this.promptPosition,
       fontSize: fontSize ?? this.fontSize,
+      scrollSpeed: scrollSpeed ?? this.scrollSpeed,
+      startPoint: startPoint ?? this.startPoint,
       countDown: countDown ?? this.countDown,
       errorMessage: errorMessage ?? this.errorMessage
     );
@@ -67,6 +73,8 @@ class ProjectState extends Equatable {
     toolsState,
     promptPosition,
     fontSize,
+    startPoint,
+    scrollSpeed,
     countDown,
     errorMessage,
   ];

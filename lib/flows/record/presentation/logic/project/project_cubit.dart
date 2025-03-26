@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -21,12 +22,34 @@ class ProjectCubit extends Cubit<ProjectState>{
 
   void changeFontSize(value){
     emit(state.copyWith(
-        fontSize: value
+      fontSize: value
+    ));
+  }
+
+  void changeScrollSpeed(value){
+    emit(state.copyWith(
+      scrollSpeed: value
+    ));
+  }
+
+  void changeStartPoint(value){
+    emit(state.copyWith(
+
+    ));
+  }
+
+  void changeCountdown(value){
+    emit(state.copyWith(
+      countDown: value
     ));
   }
 
   void openToolSlider(String key) {
     final updatedToolsState = state.toolsState.map((k, v) => MapEntry(k, k == key ? !v : false));
+
+    debugPrint("🛠 openToolSlider: key = $key");
+    debugPrint("🔄 Old State: ${state.toolsState[key]}");
+    debugPrint("🔄 New State: ${updatedToolsState[key]}");
 
     emit(state.copyWith(toolsState: updatedToolsState));
   }

@@ -37,21 +37,27 @@ class TextToolbar extends StatelessWidget{
 
           // Speed
           TextToolbarComponent(
-            onTap: () {},
+            onTap: () {
+              context.read<ProjectCubit>().openToolSlider('Speed');
+            },
             title: "Speed",
             icon: Icons.speed,
           ),
 
           // Start point
           TextToolbarComponent(
-            onTap: () {},
+            onTap: () {
+              context.read<ProjectCubit>().openToolSlider('Start point');
+            },
             title: "Start point",
             icon: Icons.start_outlined,
           ),
 
           // Countdown
           TextToolbarComponent(
-            onTap: () {},
+            onTap: () {
+              context.read<ProjectCubit>().openToolSlider('Count');
+            },
             title: "Countdown",
             icon: Icons.timer_outlined,
           ),

@@ -5,7 +5,7 @@ import 'package:teleprompter/app/domain/repositories/account_repository.dart';
 part 'app_state.dart';
 
 class AppCubit extends Cubit<AppState> {
-  AppCubit(this._repository) : super(AppSplash()) {
+  AppCubit(this._repository) : super(AppHome()) {
     _setup();
   }
 

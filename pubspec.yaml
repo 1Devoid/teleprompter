@@ -54,13 +54,15 @@ flutter:
   assets:
 #    - .env.dev
     - assets/translation/
+    - assets/icons/
+    - assets/icons/tabs/
 
   fonts:
-    - family: Poppins
+    - family: Roboto
       fonts:
-        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Roboto-Regular.ttf
           weight: 400
-        - asset: assets/fonts/Poppins-Medium.ttf
+        - asset: assets/fonts/Roboto-Medium.ttf
           weight: 500
-        - asset: assets/fonts/Poppins-SemiBold.ttf
+        - asset: assets/fonts/Roboto-SemiBold.ttf
           weight: 600

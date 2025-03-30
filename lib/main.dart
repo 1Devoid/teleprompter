@@ -6,7 +6,6 @@ import 'package:teleprompter/app/domain/repositories/account_repository.dart';
 import 'package:teleprompter/app/presentation/logic/app/app_cubit.dart';
 import 'package:teleprompter/app/presentation/screens/app.dart';
 import 'package:teleprompter/generated/codegen_loader.g.dart';
-import 'package:teleprompter/services/app_config.dart';
 
 import 'app/data/datasources/account_datasource.dart';
 
@@ -25,18 +24,19 @@ void main() async {
         designSize: const Size(412, 892),
         minTextAdapt: true,
         splitScreenMode: true,
-        builder:
-            (context, child) => RepositoryProvider(
-              create: (context) => AccountRepository(AccountDataSource()),
-              child: MultiBlocProvider(
-                providers: [
-                  BlocProvider(
-                    create: (ctx) => AppCubit(ctx.read<AccountRepository>()),
-                  ),
-                ],
-                child: const App(),
-              ),
+        builder: (context, child) {
+          return RepositoryProvider(
+            create: (context) => AccountRepository(AccountDataSource()),
+            child: MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                  create: (ctx) => AppCubit(ctx.read<AccountRepository>()),
+                ),
+              ],
+              child: const App(),
             ),
+          );
+        },
       ),
     ),
   );

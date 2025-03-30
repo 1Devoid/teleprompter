@@ -15,7 +15,11 @@ class CodegenLoader extends AssetLoader{
   }
 
   static const Map<String,dynamic> _en_US = {
-  "something_went_wrong": "Something went wrong"
+  "something_went_wrong": "Something went wrong",
+  "home": "Home",
+  "projects": "Projects",
+  "profile": "Profile",
+  "Pro": "Pro"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en_US": _en_US};
 }

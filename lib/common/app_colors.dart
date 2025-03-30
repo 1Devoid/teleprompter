@@ -5,6 +5,7 @@ class AppColors {
   static final AppColors shared = AppColors._();
   final _colors = LightColors();
 
+  Color get transparent => _colors.transparent;
   Color get neutral50 => _colors.neutral50;
   Color get neutral100 => _colors.neutral100;
   Color get neutral200 => _colors.neutral200;
@@ -87,16 +88,16 @@ class AppColors {
   Color get borderCritical => _colors.red400;
   Color get borderCriticalFaded => _colors.red100;
 
-  Color get foregroundNeutralPrimary => _colors.neutral900;
-  Color get foregroundNeutralSecondary => _colors.neutral400;
-  Color get foregroundNeutralTertiary => _colors.neutral300;
-  Color get foregroundNeutralDisabled => _colors.neutral200;
-  Color get foregroundPrimary => _colors.blue900;
-  Color get foregroundPrimaryFaded => _colors.blue200;
-  Color get foregroundCritical => _colors.red600;
-  Color get foregroundCriticalPressed => _colors.red700;
-  Color get foregroundCriticalDisabled => _colors.red200;
-  Color get foregroundWhite => _colors.white;
+  Color get fgNeutralPrimary => _colors.neutral900;
+  Color get fgNeutralSecondary => _colors.neutral400;
+  Color get fgNeutralTertiary => _colors.neutral300;
+  Color get fgNeutralDisabled => _colors.neutral200;
+  Color get fgPrimary => _colors.blue900;
+  Color get fgPrimaryFaded => _colors.blue200;
+  Color get fgCritical => _colors.red600;
+  Color get fgCriticalPressed => _colors.red700;
+  Color get fgCriticalDisabled => _colors.red200;
+  Color get fgWhite => _colors.white;
 
   Color get onBgPrimary => _colors.white;
   Color get onBgNeutralSecondary => _colors.blue950;
@@ -104,6 +105,7 @@ class AppColors {
 }
 
 abstract class IColor {
+  late final Color transparent;
   late final Color neutral50;
   late final Color neutral100;
   late final Color neutral200;
@@ -163,6 +165,9 @@ abstract class IColor {
 }
 
 class LightColors implements IColor {
+  @override
+  Color transparent = Colors.transparent;
+
   @override
   Color blue100 = const Color(0xFFE0EBF9);
 

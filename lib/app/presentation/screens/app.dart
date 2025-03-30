@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 import 'package:teleprompter/app/presentation/logic/app/app_cubit.dart';
 import 'package:teleprompter/services/navigation/app_router.dart';
+import 'package:teleprompter/services/navigation/app_router.gr.dart';
 
 class App extends StatefulWidget {
   const App({super.key});
@@ -42,7 +43,11 @@ class _AppState extends State<App> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return BlocListener<AppCubit, AppState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is AppHome) {
+          _router.replaceAll([const AppTabsRoute()]);
+        }
+      },
       child: KeyboardDismisser(
         child: MaterialApp.router(
           theme: ThemeData(

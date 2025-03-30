@@ -1,9 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:teleprompter/flows/app_tabs/presentation/enums/app_tabs_type.dart';
 
-part 'app_tab_state.dart';
+class AppTabCubit extends Cubit<AppTabsType> {
+  AppTabCubit() : super(AppTabsType.home);
 
-class AppTabCubit extends Cubit<AppTabState> {
-  AppTabCubit() : super(AppTabState());
-
-  void setAppTab() {}
+  void setAppTab(AppTabsType type) {
+    if (type == state) return;
+    emit(type);
+  }
 }

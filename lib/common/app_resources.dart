@@ -13,4 +13,12 @@ class AppResources {
 
   // general
   static const load = '$_pathToIcons/load.svg';
+
+  // welcome
+  static const onBoardingFirstScreen =
+      '$_pathToImages/welcome_screem_first.png';
+  static const onBoardingSecondScreen =
+      '$_pathToImages/welcome_screem_second.png';
+  static const onBoardingThirdScreen =
+      '$_pathToImages/welcome_screem_third.png';
 }

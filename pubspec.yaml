@@ -47,6 +47,9 @@ dependencies:
   flutter_screenutil: ^5.9.3
   keyboard_dismisser: ^3.0.0
 
+  # In-app Review
+  in_app_review: ^2.0.10
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -63,6 +66,7 @@ flutter:
     - assets/translation/
     - assets/icons/
     - assets/icons/tabs/
+    - assets/images/
 
   fonts:
     - family: Roboto

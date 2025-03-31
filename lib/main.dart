@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:teleprompter/app/domain/repositories/account_repository.dart';
 import 'package:teleprompter/app/presentation/logic/app/app_cubit.dart';
 import 'package:teleprompter/app/presentation/screens/app.dart';
+import 'package:teleprompter/flows/welcome/presentation/screens/welcome_screen.dart';
 import 'package:teleprompter/generated/codegen_loader.g.dart';
 
 import 'app/data/datasources/account_datasource.dart';
@@ -15,29 +16,31 @@ void main() async {
   // await AppConfig().loadDev();
 
   runApp(
-    EasyLocalization(
-      supportedLocales: const [Locale('en', 'US')],
-      path: 'assets/translations',
-      assetLoader: const CodegenLoader(),
-      fallbackLocale: const Locale('en', 'US'),
-      child: ScreenUtilInit(
-        designSize: const Size(412, 892),
-        minTextAdapt: true,
-        splitScreenMode: true,
-        builder: (context, child) {
-          return RepositoryProvider(
-            create: (context) => AccountRepository(AccountDataSource()),
-            child: MultiBlocProvider(
-              providers: [
-                BlocProvider(
-                  create: (ctx) => AppCubit(ctx.read<AccountRepository>()),
-                ),
-              ],
-              child: const App(),
-            ),
-          );
-        },
-      ),
-    ),
+    MaterialApp(home: WelcomeScreen()),
+
+    // EasyLocalization(
+    //   supportedLocales: const [Locale('en', 'US')],
+    //   path: 'assets/translations',
+    //   assetLoader: const CodegenLoader(),
+    //   fallbackLocale: const Locale('en', 'US'),
+    //   child: ScreenUtilInit(
+    //     designSize: const Size(412, 892),
+    //     minTextAdapt: true,
+    //     splitScreenMode: true,
+    //     builder: (context, child) {
+    //       return RepositoryProvider(
+    //         create: (context) => AccountRepository(AccountDataSource()),
+    //         child: MultiBlocProvider(
+    //           providers: [
+    //             BlocProvider(
+    //               create: (ctx) => AppCubit(ctx.read<AccountRepository>()),
+    //             ),
+    //           ],
+    //           child: const App(),
+    //         ),
+    //       );
+    //     },
+    //   ),
+    // ),
   );
 }

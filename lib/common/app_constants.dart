@@ -6,4 +6,7 @@ class C {
 
   // welcome
   static const welcome = 'Welcome';
+  
+  static final List<int> times = [0, 1, 2, 3, 5, 10, 15];
+
 }

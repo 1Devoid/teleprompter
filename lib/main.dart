@@ -9,6 +9,7 @@ import 'package:teleprompter/flows/welcome/presentation/screens/welcome_screen.d
 import 'package:teleprompter/generated/codegen_loader.g.dart';
 
 import 'app/data/datasources/account_datasource.dart';
+import 'flows/record/presentation/screens/record_preview_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,31 +17,31 @@ void main() async {
   // await AppConfig().loadDev();
 
   runApp(
-    MaterialApp(home: WelcomeScreen()),
-
-    // EasyLocalization(
-    //   supportedLocales: const [Locale('en', 'US')],
-    //   path: 'assets/translations',
-    //   assetLoader: const CodegenLoader(),
-    //   fallbackLocale: const Locale('en', 'US'),
-    //   child: ScreenUtilInit(
-    //     designSize: const Size(412, 892),
-    //     minTextAdapt: true,
-    //     splitScreenMode: true,
-    //     builder: (context, child) {
-    //       return RepositoryProvider(
-    //         create: (context) => AccountRepository(AccountDataSource()),
-    //         child: MultiBlocProvider(
-    //           providers: [
-    //             BlocProvider(
-    //               create: (ctx) => AppCubit(ctx.read<AccountRepository>()),
-    //             ),
-    //           ],
-    //           child: const App(),
-    //         ),
-    //       );
-    //     },
-    //   ),
-    // ),
+    /// DO NOT TOUCH PLS! THIS IS FOR DEV ISSUES
+    // MaterialApp(home: RecordPreviewScreen()),
+    EasyLocalization(
+      supportedLocales: const [Locale('en', 'US')],
+      path: 'assets/translations',
+      assetLoader: const CodegenLoader(),
+      fallbackLocale: const Locale('en', 'US'),
+      child: ScreenUtilInit(
+        designSize: const Size(412, 892),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) {
+          return RepositoryProvider(
+            create: (context) => AccountRepository(AccountDataSource()),
+            child: MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                  create: (ctx) => AppCubit(ctx.read<AccountRepository>()),
+                ),
+              ],
+              child: const App(),
+            ),
+          );
+        },
+      ),
+    ),
   );
 }

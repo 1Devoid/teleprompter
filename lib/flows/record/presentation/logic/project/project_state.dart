@@ -1,6 +1,6 @@
 part of 'project_cubit.dart';
 
-enum ProjectStatus {init, loading, success, failure}
+enum ProjectStatus { init, loading, success, failure }
 
 class ProjectState extends Equatable {
   const ProjectState({
@@ -16,10 +16,13 @@ class ProjectState extends Equatable {
       'Font size': false,
       'Speed': false,
       'Start point': false,
-      'Count': false
+      'Count': false,
     },
+    this.isToolActive = true,
     this.promptPosition = 0.0,
     this.fontSize = 15.0,
+    this.scrollSpeed = 1.0,
+    this.startPoint = const Duration(minutes: 0, seconds: 0),
     this.countDown = 0,
     this.errorMessage,
   });
@@ -28,8 +31,11 @@ class ProjectState extends Equatable {
   final String projectName;
   final String promptContent;
   final Map<String, bool> toolsState;
+  final bool isToolActive;
   final double promptPosition;
   final double fontSize;
+  final double scrollSpeed;
+  final Duration startPoint;
   final int countDown;
   final String? errorMessage;
 
@@ -40,22 +46,26 @@ class ProjectState extends Equatable {
     String? projectName,
     String? promptContent,
     Map<String, bool>? toolsState,
-    bool? isPositionSlider,
-    bool? isFontSizeSlider,
+    bool? isToolActive,
     double? promptPosition,
     double? fontSize,
+    double? scrollSpeed,
+    Duration? startPoint,
     int? countDown,
-    String? errorMessage
-  }){
+    String? errorMessage,
+  }) {
     return ProjectState(
       status: status ?? this.status,
       projectName: projectName ?? this.projectName,
       promptContent: promptContent ?? this.promptContent,
       toolsState: toolsState ?? this.toolsState,
+      isToolActive: isToolActive ?? this.isToolActive,
       promptPosition: promptPosition ?? this.promptPosition,
       fontSize: fontSize ?? this.fontSize,
+      scrollSpeed: scrollSpeed ?? this.scrollSpeed,
+      startPoint: startPoint ?? this.startPoint,
       countDown: countDown ?? this.countDown,
-      errorMessage: errorMessage ?? this.errorMessage
+      errorMessage: errorMessage ?? this.errorMessage,
     );
   }
 
@@ -65,8 +75,11 @@ class ProjectState extends Equatable {
     projectName,
     promptContent,
     toolsState,
+    isToolActive,
     promptPosition,
     fontSize,
+    startPoint,
+    scrollSpeed,
     countDown,
     errorMessage,
   ];

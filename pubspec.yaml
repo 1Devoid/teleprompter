@@ -46,6 +46,7 @@ dependencies:
   flutter_svg: ^2.0.17
   flutter_screenutil: ^5.9.3
   keyboard_dismisser: ^3.0.0
+  another_xlider: ^3.0.2
 
   # In-app Review
   in_app_review: ^2.0.10

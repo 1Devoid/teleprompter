@@ -19,7 +19,12 @@ class CodegenLoader extends AssetLoader{
   "home": "Home",
   "projects": "Projects",
   "profile": "Profile",
-  "Pro": "Pro"
+  "Pro": "Pro",
+  "onboarding_first_screen_heading": "Script on screen – no more awkward pauses! 📝👀",
+  "onboarding_second_screen_heading": "Shoot like a pro! 🎥🔥",
+  "onboarding_third_screen_heading": "Read, talk, go viral! 🚀",
+  "onboarding_next_screen_btn": "Continue",
+  "onboarding_last_screen_btn": "Let's go!"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en_US": _en_US};
 }

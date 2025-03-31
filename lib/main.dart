@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:teleprompter/app/domain/repositories/account_repository.dart';
 import 'package:teleprompter/app/presentation/logic/app/app_cubit.dart';
 import 'package:teleprompter/app/presentation/screens/app.dart';
+import 'package:teleprompter/flows/welcome/presentation/screens/welcome_screen.dart';
 import 'package:teleprompter/generated/codegen_loader.g.dart';
 
 import 'app/data/datasources/account_datasource.dart';

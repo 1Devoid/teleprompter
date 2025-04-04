@@ -1,6 +1,7 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:teleprompter/flows/record/presentation/enums/record_tool_types.dart';
 
 part 'project_state.dart';
 
@@ -33,33 +34,24 @@ class ProjectCubit extends Cubit<ProjectState> {
     emit(state.copyWith(countDown: value));
   }
 
-  void openToolSlider(String key) {
-    final isCurrentlyActive = state.toolsState[key] ?? false;
-    final updatedToolsState = state.toolsState.map(
-      (k, v) => MapEntry(k, k == key ? !isCurrentlyActive : false),
-    );
+  void setType(RecordToolTypes type, BuildContext context) {
+    if (state.toolType == type) {
+      emit(
+        ProjectState(
+          status: ProjectStatus.init,
+          countDown: state.countDown,
+          fontSize: state.fontSize,
+          projectName: state.projectName,
+          promptContent: state.promptContent,
+          promptPosition: state.promptPosition,
+          scrollSpeed: state.scrollSpeed,
+          startPoint: state.startPoint,
+          toolType: null,
+        ),
+      );
+      return;
+    }
 
-    final newIsToolActive = updatedToolsState[key] ?? false;
-
-    debugPrint("🛠 openToolSlider: key = $key");
-    debugPrint("🔄 Old State: ${state.toolsState[key]}");
-    debugPrint("🔄 New State: ${updatedToolsState[key]}");
-    debugPrint("🔄 Tool: $newIsToolActive");
-
-    emit(
-      state.copyWith(
-        toolsState: updatedToolsState,
-        isToolActive: newIsToolActive,
-      ),
-    );
-  }
-
-  void setToolActive(bool bool) {
-    emit(state.copyWith(isToolActive: bool));
-  }
-
-  @override
-  Future<void> close() {
-    return super.close();
+    emit(state.copyWith(toolType: type));
   }
 }

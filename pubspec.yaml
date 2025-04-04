@@ -64,6 +64,7 @@ flutter:
     - assets/translation/
     - assets/icons/
     - assets/icons/tabs/
+    - assets/icons/record/
 
   fonts:
     - family: Roboto

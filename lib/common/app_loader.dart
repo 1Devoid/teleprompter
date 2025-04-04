@@ -46,6 +46,7 @@ class _AppLoaderState extends State<AppLoader>
       child: SvgPicture.asset(
         AppResources.load,
         height: 24.sp,
+        width: 24.sp,
         colorFilter: ColorFilter.mode(
           widget.color ?? AppColors.shared.white,
           BlendMode.srcIn,

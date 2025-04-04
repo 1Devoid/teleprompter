@@ -11,14 +11,7 @@ class ProjectState extends Equatable {
     Faucibus in faucibus sollicitudin proin lectus sed posuere quis. 
     Eu commodo a pretium felis gravida. 
     Felis vel egestas tincidunt sem.''',
-    this.toolsState = const {
-      'Position': false,
-      'Font size': false,
-      'Speed': false,
-      'Start point': false,
-      'Count': false,
-    },
-    this.isToolActive = true,
+    this.toolType,
     this.promptPosition = 0.0,
     this.fontSize = 15.0,
     this.scrollSpeed = 1.0,
@@ -30,8 +23,7 @@ class ProjectState extends Equatable {
   final ProjectStatus status;
   final String projectName;
   final String promptContent;
-  final Map<String, bool> toolsState;
-  final bool isToolActive;
+  final RecordToolTypes? toolType;
   final double promptPosition;
   final double fontSize;
   final double scrollSpeed;
@@ -45,8 +37,7 @@ class ProjectState extends Equatable {
     ProjectStatus? status,
     String? projectName,
     String? promptContent,
-    Map<String, bool>? toolsState,
-    bool? isToolActive,
+    RecordToolTypes? toolType,
     double? promptPosition,
     double? fontSize,
     double? scrollSpeed,
@@ -58,8 +49,7 @@ class ProjectState extends Equatable {
       status: status ?? this.status,
       projectName: projectName ?? this.projectName,
       promptContent: promptContent ?? this.promptContent,
-      toolsState: toolsState ?? this.toolsState,
-      isToolActive: isToolActive ?? this.isToolActive,
+      toolType: toolType ?? this.toolType,
       promptPosition: promptPosition ?? this.promptPosition,
       fontSize: fontSize ?? this.fontSize,
       scrollSpeed: scrollSpeed ?? this.scrollSpeed,
@@ -74,8 +64,7 @@ class ProjectState extends Equatable {
     status,
     projectName,
     promptContent,
-    toolsState,
-    isToolActive,
+    toolType,
     promptPosition,
     fontSize,
     startPoint,

@@ -4,6 +4,8 @@ import 'package:another_xlider/models/hatch_mark_label.dart';
 import 'package:another_xlider/models/slider_step.dart';
 import 'package:another_xlider/widgets/sized_box.dart';
 import 'package:camera/camera.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:teleprompter/common/app_loader.dart';
 import 'package:teleprompter/flows/record/presentation/logic/project/project_cubit.dart';
 import 'package:teleprompter/flows/record/presentation/logic/record/record_cubit.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +22,7 @@ class RecordScreen extends StatelessWidget {
 }
 
 class _RecordScreen extends StatelessWidget {
-  const _RecordScreen({super.key});
+  const _RecordScreen();
 
   @override
   Widget build(BuildContext context) {
@@ -34,11 +36,10 @@ class _RecordScreen extends StatelessWidget {
           buildWhen:
               (p, c) => p.isLoading != c.isLoading || p.cameras != c.cameras,
           builder: (context, state) {
-            if (state.isLoading) {
-              return Center(child: CircularProgressIndicator());
-            }
+            if (state.isLoading) return Center(child: AppLoader());
+            final cubit = context.read<RecordCubit>();
 
-            if (context.read<RecordCubit>().cameraController == null) {
+            if (cubit.cameraController == null) {
               return Center(
                 child: Text(
                   "Camera is not accepted! Check permissions on settings!",
@@ -49,29 +50,13 @@ class _RecordScreen extends StatelessWidget {
               fit: StackFit.expand,
               children: [
                 // CAMERA
-                if (context.read<RecordCubit>().cameraController != null &&
-                    context
-                        .read<RecordCubit>()
-                        .cameraController!
-                        .value
-                        .isInitialized)
+                if (cubit.cameraController != null &&
+                    cubit.cameraController!.value.isInitialized)
                   FittedBox(
                     fit: BoxFit.cover,
                     child: SizedBox(
-                      width:
-                          context
-                              .read<RecordCubit>()
-                              .cameraController!
-                              .value
-                              .previewSize!
-                              .height,
-                      height:
-                          context
-                              .read<RecordCubit>()
-                              .cameraController!
-                              .value
-                              .previewSize!
-                              .width,
+                      width: cubit.cameraController?.value.previewSize?.height,
+                      height: cubit.cameraController?.value.previewSize?.width,
                       child: CameraPreview(
                         context.read<RecordCubit>().cameraController!,
                         child: Text(
@@ -84,8 +69,8 @@ class _RecordScreen extends StatelessWidget {
 
                 Padding(
                   padding: EdgeInsets.symmetric(
-                    vertical: 40.0,
-                    horizontal: 20.0,
+                    vertical: 40.sp,
+                    horizontal: 20.sp,
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -94,12 +79,10 @@ class _RecordScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            padding: EdgeInsets.all(6.0),
+                            padding: EdgeInsets.all(6.sp),
                             decoration: BoxDecoration(
                               color: Colors.white24,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(5.0),
-                              ),
+                              borderRadius: BorderRadius.circular(5.sp),
                             ),
                             child: Text(
                               state.recordingTime,
@@ -189,9 +172,6 @@ class _RecordScreen extends StatelessWidget {
                                 projectContext
                                     .read<ProjectCubit>()
                                     .changeScrollSpeed(lowerValue);
-                                projectContext
-                                    .read<ProjectCubit>()
-                                    .setToolActive(false);
                               },
                             );
                           },

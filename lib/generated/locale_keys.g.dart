@@ -7,6 +7,13 @@ abstract class  LocaleKeys {
   static const home = 'home';
   static const projects = 'projects';
   static const profile = 'profile';
-  static const Pro = 'Pro';
+  static const pro = 'pro';
+  static const camera_not_found = 'camera_not_found';
+  static const position = 'position';
+  static const font_size = 'font_size';
+  static const speed = 'speed';
+  static const start_point = 'start_point';
+  static const countdown = 'countdown';
+  static const error_during_searching_camera = 'error_during_searching_camera';
 
 }

@@ -46,6 +46,8 @@ class _AppState extends State<App> with WidgetsBindingObserver {
       listener: (context, state) {
         if (state is AppHome) {
           _router.replaceAll([const AppTabsRoute()]);
+        } else if (state is AppRecord) {
+          _router.replaceAll([RecordPreviewRoute(title: '')]);
         }
       },
       child: KeyboardDismisser(

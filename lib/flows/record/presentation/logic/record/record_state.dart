@@ -6,7 +6,7 @@ class RecordState extends Equatable {
   const RecordState({
     this.status = RecordStatus.init,
     this.cameras = const [],
-    this.selectedCamera = 0,
+    this.selectedCamera,
     this.isRecording = false,
     this.recordingTime = '00:00:00',
     this.scrollTimeMill = 0,
@@ -16,7 +16,7 @@ class RecordState extends Equatable {
 
   final RecordStatus status;
   final List<CameraDescription> cameras;
-  final int selectedCamera;
+  final CameraDescription? selectedCamera;
   final bool isRecording;
   final String recordingTime;
   final int scrollTimeMill; // scroll duration in milliseconds
@@ -25,12 +25,25 @@ class RecordState extends Equatable {
 
   bool get isLoading => status == RecordStatus.loading;
 
+  CameraDescription? get _nextCamera {
+    late final length = cameras.length;
+
+    if (cameras.isEmpty || selectedCamera == null) return null;
+    if (length == 1) return cameras.first;
+
+    // -1 can't be here, because we always get [selectedCamera] from [cameras]
+    final currCameraIndex = cameras.indexOf(selectedCamera!);
+    final nextIndex = currCameraIndex + 1 == length ? 0 : currCameraIndex + 1;
+
+    return cameras[nextIndex];
+  }
+
   RecordState copyWith({
     RecordStatus? status,
     List<CameraDescription>? cameras,
     int? scrollTimeMill,
     double? currentScroll,
-    int? selectedCamera,
+    CameraDescription? selectedCamera,
     bool? isRecording,
     String? recordingTime,
     String? errorMessage,
@@ -48,5 +61,14 @@ class RecordState extends Equatable {
   }
 
   @override
-  List<Object?> get props => [status, cameras, errorMessage];
+  List<Object?> get props => [
+    status,
+    cameras,
+    currentScroll,
+    scrollTimeMill,
+    selectedCamera,
+    isRecording,
+    recordingTime,
+    errorMessage,
+  ];
 }

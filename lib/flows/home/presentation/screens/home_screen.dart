@@ -14,6 +14,7 @@ class HomeScreen extends StatelessWidget {
         isSelected: true,
         iconPath: AppResources.home,
         title: 'titletitle',
+        onTap: () {},
       ),
     );
   }

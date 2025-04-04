@@ -21,8 +21,8 @@ class CodegenLoader extends AssetLoader{
   "profile": "Profile",
   "Pro": "Pro",
   "onboarding_first_screen_heading": "Script on screen – no more awkward pauses! 📝👀",
-  "onboarding_second_screen_heading": "Shoot like a pro! 🎥🔥",
-  "onboarding_third_screen_heading": "Read, talk, go viral! 🚀",
+  "onboarding_second_screen_heading": "Shoot like a pro! 🎥🔥 \n",
+  "onboarding_third_screen_heading": "Read, talk, go viral! 🚀 \n",
   "onboarding_next_screen_btn": "Continue",
   "onboarding_last_screen_btn": "Let's go!"
 };

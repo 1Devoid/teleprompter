@@ -40,7 +40,7 @@ class _Item extends StatelessWidget {
           height: PageSelector.height,
           decoration: BoxDecoration(
             color:
-                state == index
+                index <= state
                     ? AppColors.shared.blue700
                     : AppColors.shared.gray200,
             borderRadius: BorderRadius.all(Radius.circular(100.sp)),

@@ -1,19 +1,13 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 
-import 'package:auto_route/annotations.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:teleprompter/app/presentation/logic/app/app_cubit.dart';
-import 'package:teleprompter/common/app_constants.dart';
-import 'package:teleprompter/common/app_styles.dart';
 import 'package:teleprompter/flows/welcome/logic/page_view_selector_cubit.dart';
 import 'package:teleprompter/flows/welcome/presentation/enums/tutorial_page_types.dart';
 import 'package:teleprompter/flows/welcome/presentation/widgets/next_button.dart';
 import 'package:teleprompter/flows/welcome/presentation/widgets/page_selector.dart';
 import 'package:teleprompter/flows/welcome/presentation/widgets/welcome_slider.dart';
-import 'package:teleprompter/services/managers/shared_pref.dart';
 
 @RoutePage()
 class WelcomeScreen extends StatelessWidget {
@@ -69,7 +63,6 @@ class _WelcomeViewState extends State<_WelcomeView> {
                 Padding(
                   padding: EdgeInsets.only(top: 40.sp, bottom: 20.sp),
                   child: Column(
-                    mainAxisSize: MainAxisSize.min,
                     children: [
                       PageSelector(),
                       SizedBox(height: 40.sp),

@@ -28,17 +28,15 @@ class _Item extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Container(
-          padding: EdgeInsets.symmetric(horizontal: C.leftRightPadding),
-          decoration: const BoxDecoration(
+          clipBehavior: Clip.antiAlias,
+          decoration: BoxDecoration(
             border: Border(bottom: BorderSide(color: Colors.white12)),
+            borderRadius: BorderRadius.circular(15.sp),
           ),
-          child: Align(
-            alignment: Alignment.bottomCenter,
-            child: Image.asset(item.image, height: 500.sp),
-          ),
+          child: Image.asset(item.image),
         ),
         SizedBox(height: 40.sp),
         Padding(

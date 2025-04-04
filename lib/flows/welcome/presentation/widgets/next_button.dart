@@ -25,10 +25,8 @@ class NextButton extends StatelessWidget {
               Expanded(
                 child: BaseButton(
                   type: ButtonType.pFill,
-                  title:
-                      state < TutorialPageTypes.values.length - 1
-                          ? LocaleKeys.onboarding_next_screen_btn.tr()
-                          : LocaleKeys.onboarding_last_screen_btn.tr(),
+                  isBig: true,
+                  title: LocaleKeys.onboarding_next_screen_btn.tr(),
                   onTap: () => cubit.increment(context),
                 ),
               ),

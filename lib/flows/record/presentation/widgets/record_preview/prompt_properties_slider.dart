@@ -3,9 +3,9 @@ import 'package:another_xlider/models/slider_step.dart';
 import 'package:teleprompter/flows/record/presentation/logic/project/project_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:teleprompter/flows/record/presentation/widgets/prompt_toolbars/countdown.dart';
-import 'package:teleprompter/flows/record/presentation/widgets/prompt_toolbars/speed_slider.dart';
-import 'package:teleprompter/flows/record/presentation/widgets/prompt_toolbars/start_point.dart';
+import 'package:teleprompter/flows/record/presentation/widgets/record_preview/prompt_toolbars/countdown.dart';
+import 'package:teleprompter/flows/record/presentation/widgets/record_preview/prompt_toolbars/speed_slider.dart';
+import 'package:teleprompter/flows/record/presentation/widgets/record_preview/prompt_toolbars/start_point.dart';
 
 class PromptPropertiesSlider extends StatelessWidget {
   const PromptPropertiesSlider({super.key});

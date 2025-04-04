@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teleprompter/flows/record/presentation/logic/project/project_cubit.dart';
 import 'package:teleprompter/flows/record/presentation/logic/record/record_cubit.dart';
-import 'package:teleprompter/flows/record/presentation/widgets/camera_preview_tools.dart';
-import 'package:teleprompter/flows/record/presentation/widgets/prompt_content_widget.dart';
-import 'package:teleprompter/flows/record/presentation/widgets/prompt_properties_slider.dart';
-import 'package:teleprompter/flows/record/presentation/widgets/text_toolbar_widget.dart';
+import 'package:teleprompter/flows/record/presentation/widgets/record_preview/camera_preview_tools.dart';
+import 'package:teleprompter/flows/record/presentation/widgets/record_preview/prompt_content_widget.dart';
+import 'package:teleprompter/flows/record/presentation/widgets/record_preview/prompt_properties_slider.dart';
+import 'package:teleprompter/flows/record/presentation/widgets/record_preview/text_toolbar_widget.dart';
 
 class RecordPreviewScreen extends StatelessWidget {
   const RecordPreviewScreen({super.key});
@@ -14,8 +14,8 @@ class RecordPreviewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (_) => RecordCubit(),
-        child: _RecordPreviewScreen(),
+      create: (_) => RecordCubit(),
+      child: _RecordPreviewScreen(),
     );
   }
 }
@@ -31,7 +31,8 @@ class _RecordPreviewScreen extends StatelessWidget {
         BlocProvider<RecordCubit>(create: (_) => RecordCubit()),
       ],
       child: BlocBuilder<ProjectCubit, ProjectState>(
-        buildWhen: (previous, current) => previous.isLoading != current.isLoading,
+        buildWhen:
+            (previous, current) => previous.isLoading != current.isLoading,
         builder: (context, projectState) {
           if (projectState.isLoading) {
             return const Center(child: CircularProgressIndicator());
@@ -42,15 +43,16 @@ class _RecordPreviewScreen extends StatelessWidget {
               title: Text(projectState.projectName),
               actions: [
                 IconButton(
-                    onPressed: (){},
-                    icon: Icon(Icons.edit_note_outlined),
+                  onPressed: () {},
+                  icon: Icon(Icons.edit_note_outlined),
                 ),
               ],
             ),
             body: BlocBuilder<RecordCubit, RecordState>(
-              buildWhen: (previous, current) =>
-              previous.isLoading != current.isLoading ||
-                  previous.cameras != current.cameras,
+              buildWhen:
+                  (previous, current) =>
+                      previous.isLoading != current.isLoading ||
+                      previous.cameras != current.cameras,
               builder: (context, recordState) {
                 if (projectState.isLoading) {
                   return const Center(child: CircularProgressIndicator());
@@ -60,14 +62,14 @@ class _RecordPreviewScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     if (context.read<RecordCubit>().cameraController != null)
-                     Container(
-                      clipBehavior: Clip.antiAlias,
-                      margin: EdgeInsets.all(20.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25.0),
-                      ),
-                      height: MediaQuery.of(context).size.height * 0.75,
-                        child:Stack(
+                      Container(
+                        clipBehavior: Clip.antiAlias,
+                        margin: EdgeInsets.all(20.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25.0),
+                        ),
+                        height: MediaQuery.of(context).size.height * 0.75,
+                        child: Stack(
                           alignment: Alignment.topCenter,
                           children: [
                             SizedBox(
@@ -83,32 +85,38 @@ class _RecordPreviewScreen extends StatelessWidget {
                                 Container(
                                   margin: EdgeInsets.only(
                                     left: 20.0,
-                                    right: 20.0
+                                    right: 20.0,
                                   ),
-                                  width: MediaQuery.of(context)
-                                      .size.width * 0.8,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.8,
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       SizedBox(
-                                        height: MediaQuery.of(context)
-                                            .size.height * 0.2,
-                                        width: MediaQuery.of(context)
-                                          .size.width * 0.7,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                            0.2,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                            0.7,
                                         child: PromptPropertiesSlider(),
                                       ),
                                     ],
                                   ),
                                 ),
-                                CameraPreviewTools()
+                                CameraPreviewTools(),
                               ],
                             ),
                           ],
                         ),
                       )
                     else
-                      const Center(child: Text('Camera not found! '
-                          'Please, check permissions!')),
+                      const Center(
+                        child: Text(
+                          'Camera not found! '
+                          'Please, check permissions!',
+                        ),
+                      ),
                     TextToolbar(),
                   ],
                 );
@@ -120,4 +128,3 @@ class _RecordPreviewScreen extends StatelessWidget {
     );
   }
 }
-

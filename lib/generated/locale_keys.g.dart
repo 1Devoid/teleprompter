@@ -13,5 +13,12 @@ abstract class  LocaleKeys {
   static const onboarding_third_screen_heading = 'onboarding_third_screen_heading';
   static const onboarding_next_screen_btn = 'onboarding_next_screen_btn';
   static const onboarding_last_screen_btn = 'onboarding_last_screen_btn';
+  static const camera_not_found = 'camera_not_found';
+  static const position = 'position';
+  static const font_size = 'font_size';
+  static const speed = 'speed';
+  static const start_point = 'start_point';
+  static const countdown = 'countdown';
+  static const error_during_searching_camera = 'error_during_searching_camera';
 
 }

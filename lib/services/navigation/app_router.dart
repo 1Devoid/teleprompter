@@ -9,7 +9,10 @@ class AppRouter extends RootStackRouter {
 
   @override
   List<AutoRoute> get routes => [
-    AutoRoute(page: WelcomeRoute.page, initial: true),
+    /// WARNING: This is test Route!
+    AutoRoute(page: RecordRoute.page, initial: true),
+
+    AutoRoute(page: WelcomeRoute.page),
     AutoRoute(
       // initial: true,
       page: AppTabsRoute.page,

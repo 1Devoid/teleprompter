@@ -3,13 +3,16 @@ import 'package:another_xlider/models/hatch_mark.dart';
 import 'package:another_xlider/models/hatch_mark_label.dart';
 import 'package:another_xlider/models/slider_step.dart';
 import 'package:another_xlider/widgets/sized_box.dart';
+import 'package:auto_route/annotations.dart';
 import 'package:camera/camera.dart';
 import 'package:teleprompter/flows/record/presentation/logic/project/project_cubit.dart';
 import 'package:teleprompter/flows/record/presentation/logic/record/record_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:teleprompter/flows/record/presentation/widgets/prompt_content_widget.dart';
+import 'package:teleprompter/flows/record/presentation/widgets/record_preview/prompt_content_widget.dart';
+import 'package:teleprompter/flows/record/presentation/widgets/record_in_progress/toolbar.dart';
 
+@RoutePage()
 class RecordScreen extends StatelessWidget {
   const RecordScreen({super.key});
 
@@ -198,91 +201,9 @@ class _RecordScreen extends StatelessWidget {
                         ),
 
                         // CAMERA INTERACTION BUTTONS
-                        Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                              left: 15.0,
-                              right: 15.0,
-                              bottom: 45.0,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                // Pause
-                                IconButton(
-                                  iconSize: 30.0,
-                                  color: Colors.black,
-                                  style: ButtonStyle(
-                                    backgroundColor:
-                                        WidgetStateProperty.all<Color>(
-                                          Colors.white,
-                                        ),
-                                    shape: WidgetStateProperty.all<
-                                      RoundedRectangleBorder
-                                    >(
-                                      RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                    ),
-                                  ),
-                                  onPressed: () {
-                                    if (!state.isRecording) {
-                                      context
-                                          .read<RecordCubit>()
-                                          .startRecording();
-                                    }
-                                  },
-                                  icon: Icon(Icons.pause),
-                                ),
+                        RecordingToolbar(),
 
-                                // Stop recording
-                                IconButton(
-                                  iconSize: 35.0,
-                                  color:
-                                      state.isRecording
-                                          ? Colors.green
-                                          : Colors.red,
-                                  style: ButtonStyle(
-                                    backgroundColor:
-                                        WidgetStateProperty.all<Color>(
-                                          Colors.white,
-                                        ),
-                                  ),
-                                  onPressed: () {
-                                    if (state.isRecording) {
-                                      context
-                                          .read<RecordCubit>()
-                                          .stopRecording();
-                                    }
-                                  },
-                                  icon: Icon(Icons.circle),
-                                ),
-                                IconButton(
-                                  iconSize: 30.0,
-                                  color: Colors.black,
-                                  style: ButtonStyle(
-                                    backgroundColor:
-                                        WidgetStateProperty.all<Color>(
-                                          Colors.white,
-                                        ),
-                                    shape: WidgetStateProperty.all<
-                                      RoundedRectangleBorder
-                                    >(
-                                      RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                    ),
-                                  ),
-                                  onPressed: () {
-                                    context.read<RecordCubit>().switchCamera();
-                                  },
-                                  icon: Icon(Icons.restart_alt),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                        // Switch Camera
                       ],
                     ),
                   ],

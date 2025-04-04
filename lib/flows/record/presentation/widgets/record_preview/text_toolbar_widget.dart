@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../logic/project/project_cubit.dart';
-import './text_toolbar_component_widget.dart';
+import '../../logic/project/project_cubit.dart';
+import 'text_toolbar_component_widget.dart';
 
 class TextToolbar extends StatelessWidget {
   const TextToolbar({super.key});

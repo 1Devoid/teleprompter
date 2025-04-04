@@ -24,7 +24,14 @@ class CodegenLoader extends AssetLoader{
   "onboarding_second_screen_heading": "Shoot like a pro! 🎥🔥",
   "onboarding_third_screen_heading": "Read, talk, go viral! 🚀",
   "onboarding_next_screen_btn": "Continue",
-  "onboarding_last_screen_btn": "Let's go!"
+  "onboarding_last_screen_btn": "Let's go!",
+  "camera_not_found": "Camera not found! Please, check permissions and restart the app!",
+  "position": "Position",
+  "font_size": "Font size",
+  "speed": "Speed",
+  "start_point": "Start point",
+  "countdown": "Сountdown",
+  "error_during_searching_camera": "Error during searching camera! No camera's found!"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en_US": _en_US};
 }

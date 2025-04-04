@@ -1,10 +1,12 @@
 import 'dart:math';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teleprompter/common/app_constants.dart';
 import 'package:teleprompter/flows/welcome/presentation/enums/tutorial_page_types.dart';
 import 'package:teleprompter/services/managers/shared_pref.dart';
+import 'package:teleprompter/services/navigation/app_router.gr.dart';
 
 class PageViewSelectorCubit extends Cubit<int> {
   PageViewSelectorCubit() : super(0);
@@ -28,6 +30,7 @@ class PageViewSelectorCubit extends Cubit<int> {
       _animatePageTo(index);
     } else {
       SharedPrefManager.shared.write(C.welcome, true);
+      AutoRouter.of(context).push(const HomeRoute());
     }
   }
 

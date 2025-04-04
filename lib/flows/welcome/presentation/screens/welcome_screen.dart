@@ -71,9 +71,9 @@ class _WelcomeViewState extends State<_WelcomeView> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Expanded(child: WelcomeSlider()),
-                      SizedBox(height: 40.sp),
                       PageSelector(),
+                      SizedBox(height: 40.sp),
+                      Expanded(child: WelcomeSlider()),
                       SizedBox(height: 40.sp),
                       NextButton(),
                     ],

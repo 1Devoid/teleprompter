@@ -28,6 +28,7 @@ class _Item extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
           padding: EdgeInsets.symmetric(horizontal: C.leftRightPadding),
@@ -36,7 +37,7 @@ class _Item extends StatelessWidget {
           ),
           child: Align(
             alignment: Alignment.bottomCenter,
-            child: SvgPicture.asset(item.image, height: 1.0 * 0.35),
+            child: Image.asset(item.image, height: 500.sp),
           ),
         ),
         SizedBox(height: 40.sp),
@@ -44,11 +45,11 @@ class _Item extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: C.leftRightPadding),
           child: Column(
             children: [
-              FittedBox(
-                child: Text(
-                  item.title,
-                  style: AppStyles.shared.titleSmallRegular,
-                ),
+              Text(
+                item.title,
+                softWrap: true,
+                textAlign: TextAlign.center,
+                style: AppStyles.shared.headingMdSemiBold,
               ),
             ],
           ),

@@ -11,7 +11,7 @@ class PageSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: size,
+      height: height,
       child: ListView.separated(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
@@ -22,8 +22,8 @@ class PageSelector extends StatelessWidget {
     );
   }
 
-  static final size = 8.sp;
-  static final bigSize = 23.sp;
+  static final height = 5.sp;
+  static final width = 120.sp;
 }
 
 class _Item extends StatelessWidget {
@@ -36,14 +36,14 @@ class _Item extends StatelessWidget {
       builder: (context, state) {
         return AnimatedContainer(
           duration: const Duration(milliseconds: 300),
-          width: state == index ? PageSelector.bigSize : PageSelector.size,
-          height: PageSelector.size,
+          width: PageSelector.width,
+          height: PageSelector.height,
           decoration: BoxDecoration(
             color:
                 state == index
-                    ? AppColors.shared.blue50
-                    : AppColors.shared.white,
-            borderRadius: BorderRadius.all(Radius.circular(2.sp)),
+                    ? AppColors.shared.blue700
+                    : AppColors.shared.gray200,
+            borderRadius: BorderRadius.all(Radius.circular(100.sp)),
           ),
         );
       },
